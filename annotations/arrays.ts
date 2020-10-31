@@ -9,7 +9,7 @@ const car = carMakers[0];
 const myCar = carMakers.pop();
 
 // 2) Detects incompatible values
-carMakers.push(100);
+// carMakers.push(100);
 
 // 3) Helps with Array method inputs and autocompletion
 carMakers.map((car: string): string => car.toUpperCase());
