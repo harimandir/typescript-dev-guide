@@ -13,3 +13,8 @@ carMakers.push(100);
 
 // 3) Helps with Array method inputs and autocompletion
 carMakers.map((car: string): string => car.toUpperCase());
+
+// mixed types
+const importantDates: (Date | string)[] = [new Date()];
+importantDates.push("2020-11-03");
+importantDates.push(new Date());
