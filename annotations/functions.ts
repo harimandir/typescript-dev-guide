@@ -15,3 +15,24 @@ function divide(a: number, b: number): number {
 const multiply = function (a: number, b: number): number {
   return a * b;
 };
+
+const logger = (message: string): void => {
+  console.log(message);
+};
+
+const throwAlways = (message: string): never => {
+  throw new Error();
+};
+
+const errorOrString = (message: string): string => {
+  if (!message) {
+    throw new Error();
+  }
+  return message;
+};
+
+const errorOrVoid = (message: string): void => {
+  if (!message) {
+    throw new Error();
+  }
+};
