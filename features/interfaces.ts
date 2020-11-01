@@ -15,7 +15,7 @@ const drink = {
   color: "brown",
   carbonated: false,
   sugar: 20,
-  summary() {
+  summary(): string {
     return `This drink has ${this.sugar} grams of sugar`;
   },
 };
