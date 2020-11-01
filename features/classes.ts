@@ -1,22 +1,22 @@
 class Vehicle {
-  drive(): void {
-    console.log("chugga chugga");
-  }
-  honk(): void {
+  protected honk(): void {
     console.log("beep");
   }
 }
 
+// Protected methods are only accessible within the class or subclasses
 const vehicle = new Vehicle();
-vehicle.drive();
-vehicle.honk();
+// vehicle.honk();
 
 class Car extends Vehicle {
-  drive(): void {
+  private drive(): void {
     console.log("vroom");
+  }
+  startDriving(): void {
+    this.drive();
+    this.honk();
   }
 }
 
 const car = new Car();
-car.drive();
-car.honk();
+car.startDriving();
