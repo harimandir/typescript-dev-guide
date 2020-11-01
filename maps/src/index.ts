@@ -1,7 +1,5 @@
 // import { User } from "./User";
 // import { Company } from "./Company";
+import { Map } from "./Map";
 
-new google.maps.Map(document.getElementById("map"), {
-  zoom: 1,
-  center: { lat: 33, lng: -112 },
-});
+new Map("map");
