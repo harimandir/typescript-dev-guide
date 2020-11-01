@@ -1,12 +1,13 @@
 // Enable dependency inversion with an interface by
 // providing instructions to other types on what they need to
 // implement in order to be used as an argument to addMarker
-interface Mappable {
+export interface Mappable {
   location: {
     lat: number;
     lng: number;
   };
   markerContent(): string;
+  markerColor: string;
 }
 
 export class Map {
