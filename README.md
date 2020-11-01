@@ -18,4 +18,4 @@ For example, in project root folder
 
 `npx parcel maps/index.html`
 
-Load the page at http://localhost:1234
+Load the page at `http://localhost:1234`
