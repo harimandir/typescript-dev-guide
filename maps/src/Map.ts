@@ -19,6 +19,16 @@ export class Map {
   }
 
   addMarker(mappable: Mappable): void {
-    new google.maps.Marker({ map: this.map, position: mappable.location });
+    const marker = new google.maps.Marker({
+      map: this.map,
+      position: mappable.location,
+    });
+
+    marker.addListener("click", () =>
+      new google.maps.InfoWindow({ content: "Hello, World!" }).open(
+        this.map,
+        marker
+      )
+    );
   }
 }
