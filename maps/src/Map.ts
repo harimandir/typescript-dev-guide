@@ -11,7 +11,7 @@ export class Map {
     });
   }
 
-  addUserMarker(user: User): void {
-    new google.maps.Marker({ map: this.map, position: user.location });
+  addMarker(mappable: User | Company): void {
+    new google.maps.Marker({ map: this.map, position: mappable.location });
   }
 }
