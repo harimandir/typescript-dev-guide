@@ -1,0 +1,10 @@
+{
+  "name": "typescript-dev-guide-features",
+  "version": "1.0.0",
+  "description": "Demonstration of basic TypeScript language features and syntax",
+  "devDependencies": {
+    "prettier": "^2.1.2",
+    "ts-node": "^9.0.0",
+    "typescript": "^4.0.5"
+  }
+}
