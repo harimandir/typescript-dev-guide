@@ -16,6 +16,8 @@ export class User {
   }
 
   markerContent(): string {
-    return `<strong>User: ${this.name}</strong>`;
+    return `
+      <strong>User: ${this.name}</strong>
+    `;
   }
 }
