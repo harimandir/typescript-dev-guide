@@ -1,4 +1,10 @@
-console.log("Hello, World!");
+class Sorter {
+  constructor(protected collection: number[]) {}
 
-const logSomething = () => console.log("Something has changed...");
-logSomething();
+  sort(): number[] {
+    return this.collection;
+  }
+}
+
+const sorter = new Sorter([10, 3, -5, 0]);
+console.log(sorter.sort());
