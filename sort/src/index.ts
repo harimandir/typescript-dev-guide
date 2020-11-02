@@ -1,18 +1,28 @@
-class Sorter {
-  constructor(protected collection: number[]) {}
+type Sortable = number[] | string;
 
-  sort(): number[] {
+class Sorter {
+  constructor(protected collection: Sortable) {}
+
+  sort(): Sortable {
     const { length } = this.collection;
     for (let i = 0; i < length; i++) {
       for (let j = 0, k = 1; k < length - i; j++, k++) {
-        const [x, y] = [this.collection[j], this.collection[k]];
-        if (x > y) {
-          this.collection[k] = x;
-          this.collection[j] = y;
-        }
+        this.sortArrayPair(j, k);
       }
     }
     return this.collection;
+  }
+
+  private sortArrayPair(j: number, k: number): void {
+    // This type guard makes sure that this block of
+    // code will only run if this.collection is a number[]
+    if (this.collection instanceof Array) {
+      const [x, y] = [this.collection[j], this.collection[k]];
+      if (x > y) {
+        this.collection[k] = x;
+        this.collection[j] = y;
+      }
+    }
   }
 }
 
