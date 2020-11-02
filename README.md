@@ -1,21 +1,35 @@
 # Typescript: The Complete Developer's Guide [2020] Coursework
 
+## Prerequisites
+
+Install npm
+
 ## Setup
 
-Install dependencies
+Install dependencies in each project folder before first use
 
 `npm i`
 
-### Compile and run a TypeScript file in Node.js REPL
+## Included projects
 
-For example, in project root folder
+### fetchjson
 
-`npx ts-node fetchjson/index.ts`
+Fetch JSON from placeholder API and output to console
 
-### Bundle TypeScript source in an html file an serve with Parcel
+- Compile and run a TypeScript file in Node.js REPL
 
-For example, in project root folder
+`npx ts-node index.ts`
 
-`npx parcel maps/index.html`
+### features
+
+Demonstration of basic TypeScript language features and syntax
+
+### maps
+
+Display randomized User and Company markers on Google Maps
+
+- Bundles TypeScript source in an html file an serve with Parcel
+
+`npx parcel index.html`
 
 Load the page at `http://localhost:1234`

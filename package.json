@@ -1,31 +1,18 @@
 {
   "name": "typescript-dev-guide",
   "version": "1.0.0",
-  "description": "## Setup",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "description": "Typescript: The Complete Developer's Guide [2020] Coursework",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/harimandir/typescript-dev-guide.git"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Harimandir S Khalsa",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/harimandir/typescript-dev-guide/issues"
   },
   "homepage": "https://github.com/harimandir/typescript-dev-guide#readme",
   "devDependencies": {
-    "@types/faker": "^5.1.4",
-    "@types/googlemaps": "^3.40.3",
-    "parcel-bundler": "^1.12.4",
-    "prettier": "^2.1.2",
-    "ts-node": "^9.0.0",
-    "typescript": "^4.0.5"
-  },
-  "dependencies": {
-    "faker": "^5.1.0"
+    "prettier": "^2.1.2"
   }
 }

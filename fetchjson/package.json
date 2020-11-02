@@ -1,15 +1,11 @@
 {
-  "name": "fetchjson",
+  "name": "typescript-dev-guide-fetchjson",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "description": "Fetch JSON from remote API and output to console",
   "dependencies": {
     "axios": "^0.21.0"
+  },
+  "devDependencies": {
+    "ts-node": "^9.0.0"
   }
 }
