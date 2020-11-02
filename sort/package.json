@@ -1,0 +1,9 @@
+{
+  "name": "typescript-dev-guide-sort",
+  "version": "1.0.0",
+  "description": "Sort arrays, strings, and linked lists using a single algorithm",
+  "devDependencies": {
+    "ts-node": "^9.0.0",
+    "typescript": "^4.0.5"
+  }
+}
