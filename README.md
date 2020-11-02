@@ -45,3 +45,19 @@ Load the page at `http://localhost:1234`
 ### sort
 
 Sort arrays, strings, and linked lists using a single algorithm
+
+- Compile the src to the build folder
+
+`npx tsc`
+
+- Run the TypeScript compiler in watch mode while editing src files
+
+`npx tsc -w`
+
+- Launch the build output in the console
+
+`npx node build/index.js`
+
+- Better yet, use `nodemon` and `concurrently` to do both at the same time
+
+`npm start`
