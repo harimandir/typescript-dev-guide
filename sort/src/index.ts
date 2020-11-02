@@ -14,7 +14,7 @@ class Sorter {
     return this.collection;
   }
 
-  private sortArrayPair(j: number, k: number): void {
+  protected sortArrayPair(j: number, k: number): void {
     // This type guard makes sure that this block of
     // code will only run if this.collection is a number[]
     if (this.collection instanceof Array) {
@@ -26,7 +26,7 @@ class Sorter {
     }
   }
 
-  private sortCharPair(j: number, k: number): void {
+  protected sortCharPair(j: number, k: number): void {
     // This is not a good approach because we would
     // have to add to the implementations for each new
     // input type we want to support
