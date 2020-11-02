@@ -8,6 +8,7 @@ class Sorter {
     for (let i = 0; i < length; i++) {
       for (let j = 0, k = 1; k < length - i; j++, k++) {
         this.sortArrayPair(j, k);
+        this.sortCharPair(j, k);
       }
     }
     return this.collection;
@@ -22,6 +23,16 @@ class Sorter {
         this.collection[k] = x;
         this.collection[j] = y;
       }
+    }
+  }
+
+  private sortCharPair(j: number, k: number): void {
+    // This is not a good approach because we would
+    // have to add to the implementations for each new
+    // input type we want to support
+    if (typeof this.collection == "string") {
+      // compare
+      // swap if needed
     }
   }
 }
