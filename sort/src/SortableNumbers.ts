@@ -1,4 +1,4 @@
-import { Greater } from "./Sorter";
+import { Sorter, Greater } from "./Sorter";
 
 export class SortableNumbers {
   constructor(protected numbers: number[]) {}
@@ -25,5 +25,9 @@ export class SortableNumbers {
     const [x, y] = [this.numbers[j], this.numbers[k]];
     this.numbers[k] = x;
     this.numbers[j] = y;
+  }
+
+  sort(): string {
+    return new Sorter(this).sort();
   }
 }

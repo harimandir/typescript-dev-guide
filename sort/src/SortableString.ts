@@ -1,4 +1,4 @@
-import { Greater } from "./Sorter";
+import { Sorter, Greater } from "./Sorter";
 
 export class SortableString {
   constructor(protected string: string) {}
@@ -27,5 +27,9 @@ export class SortableString {
     characters[k] = x;
     characters[j] = y;
     this.string = characters.join("");
+  }
+
+  sort(): string {
+    return new Sorter(this).sort();
   }
 }

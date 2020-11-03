@@ -1,4 +1,4 @@
-import { Greater } from "./Sorter";
+import { Sorter, Greater } from "./Sorter";
 
 export class NumberList {
   head: Node | null = null;
@@ -94,5 +94,9 @@ export class SortableList {
     const val = x.val;
     x.val = y.val;
     y.val = val;
+  }
+
+  sort(): string {
+    return new Sorter(this).sort();
   }
 }
