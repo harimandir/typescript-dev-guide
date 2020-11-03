@@ -7,6 +7,10 @@ export class SortableString {
     return this.string.length;
   }
 
+  toString(): string {
+    return this.string;
+  }
+
   greaterIndexValue(j: number, k: number): Greater {
     const [x, y] = [this.string[j], this.string[k]];
     if (x.toLocaleLowerCase() > y.toLocaleLowerCase()) {

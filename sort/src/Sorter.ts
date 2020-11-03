@@ -2,6 +2,7 @@ export interface Sortable {
   length: number;
   greaterIndexValue(j: number, k: number): Greater;
   swapIndexValues(j: number, k: number): void;
+  toString(): string;
 }
 
 export enum Greater {
@@ -13,7 +14,7 @@ export enum Greater {
 export class Sorter {
   constructor(protected collection: Sortable) {}
 
-  sort(): Sortable {
+  sort(): string {
     const { length } = this.collection;
     for (let i = 0; i < length; i++) {
       for (let j = 0, k = 1; k < length - i; j++, k++) {
@@ -22,6 +23,6 @@ export class Sorter {
         }
       }
     }
-    return this.collection;
+    return this.collection.toString();
   }
 }

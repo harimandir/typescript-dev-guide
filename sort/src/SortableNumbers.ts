@@ -7,6 +7,10 @@ export class SortableNumbers {
     return this.numbers.length;
   }
 
+  toString(): string {
+    return this.numbers.toString();
+  }
+
   greaterIndexValue(j: number, k: number): Greater {
     const [x, y] = [this.numbers[j], this.numbers[k]];
     if (x > y) {
