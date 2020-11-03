@@ -1,4 +1,4 @@
-export namespace types {
+module types {
   const today = new Date();
   today.getMonth();
 

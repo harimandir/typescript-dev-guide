@@ -1,4 +1,4 @@
-namespace annotations.objects {
+module annotations.objects {
   const profile = {
     name: "Normal",
     age: 21,

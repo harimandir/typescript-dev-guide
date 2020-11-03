@@ -1,4 +1,4 @@
-export namespace classes {
+module classes {
   class Vehicle {
     constructor(public color: string = "unknown") {}
 

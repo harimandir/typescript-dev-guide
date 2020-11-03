@@ -1,4 +1,4 @@
-export namespace tuples {
+module tuples {
   const drink = {
     color: "brown",
     carbonated: false,

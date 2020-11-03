@@ -1,4 +1,4 @@
-namespace annotations.functions {
+module annotations.functions {
   // return type can be inferred,
   // but this won't help us avoid mistakenly returning the wrong type
   const add = (a: number, b: number) => {

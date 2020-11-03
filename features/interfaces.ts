@@ -1,4 +1,4 @@
-export namespace interfaces {
+module interfaces {
   interface Printable {
     summary(): string;
   }
