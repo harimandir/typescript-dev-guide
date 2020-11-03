@@ -1,35 +1,33 @@
-import { Sorter, Greater } from "./Sorter";
+import { Sorter } from "./Sorter";
 
-export class SortableString {
-  constructor(protected string: string) {}
+export class SortableString extends Sorter {
+  constructor(protected data: string) {
+    super();
+  }
 
   get length() {
-    return this.string.length;
+    return this.data.length;
   }
 
   toString(): string {
-    return this.string;
+    return this.data;
   }
 
-  greaterIndexValue(j: number, k: number): Greater {
-    const [x, y] = [this.string[j], this.string[k]];
+  greaterIndexValue(j: number, k: number): Sorter.Greater {
+    const [x, y] = [this.data[j], this.data[k]];
     if (x.toLocaleLowerCase() > y.toLocaleLowerCase()) {
-      return Greater.isLeft;
+      return Sorter.Greater.isLeft;
     } else if (y.toLocaleLowerCase() > x.toLocaleLowerCase()) {
-      return Greater.isRight;
+      return Sorter.Greater.isRight;
     }
-    return Greater.neither;
+    return Sorter.Greater.neither;
   }
 
   swapIndexValues(j: number, k: number): void {
-    const [x, y] = [this.string[j], this.string[k]];
-    const characters = this.string.split("");
+    const [x, y] = [this.data[j], this.data[k]];
+    const characters = this.data.split("");
     characters[k] = x;
     characters[j] = y;
-    this.string = characters.join("");
-  }
-
-  sort(): string {
-    return new Sorter(this).sort();
+    this.data = characters.join("");
   }
 }

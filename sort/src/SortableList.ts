@@ -1,4 +1,4 @@
-import { Sorter, Greater } from "./Sorter";
+import { Sorter } from "./Sorter";
 
 export class NumberList {
   head: Node | null = null;
@@ -68,8 +68,10 @@ class Node {
   constructor(public val: number) {}
 }
 
-export class SortableList {
-  constructor(protected list: NumberList) {}
+export class SortableList extends Sorter {
+  constructor(protected list: NumberList) {
+    super();
+  }
 
   get length(): number {
     return this.list.length;
@@ -79,14 +81,14 @@ export class SortableList {
     return this.list.toString();
   }
 
-  greaterIndexValue(j: number, k: number): Greater {
+  greaterIndexValue(j: number, k: number): Sorter.Greater {
     const [x, y] = [this.list.at(j).val, this.list.at(k).val];
     if (x > y) {
-      return Greater.isLeft;
+      return Sorter.Greater.isLeft;
     } else if (x < y) {
-      return Greater.isRight;
+      return Sorter.Greater.isRight;
     }
-    return Greater.neither;
+    return Sorter.Greater.neither;
   }
 
   swapIndexValues(j: number, k: number): void {
@@ -94,9 +96,5 @@ export class SortableList {
     const val = x.val;
     x.val = y.val;
     y.val = val;
-  }
-
-  sort(): string {
-    return new Sorter(this).sort();
   }
 }
