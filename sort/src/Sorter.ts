@@ -17,7 +17,7 @@ export abstract class Sorter {
   }
 }
 
-export namespace Sorter {
+export module Sorter {
   export enum Greater {
     isLeft = -1,
     neither,
