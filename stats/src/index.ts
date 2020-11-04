@@ -1,9 +1,10 @@
-import { FootballMatchCsvFileReader } from "./inheritance/FootballMatchCsvFileReader";
+import { FootballMatchLoader } from "./FootballMatchLoader";
+import { CsvFileReader } from "./CsvFileReader";
 import { MatchResult } from "./MatchResult";
 
-const reader = new FootballMatchCsvFileReader("football.csv");
-reader.read();
-const matches = reader.data;
+const loader = new FootballMatchLoader(new CsvFileReader("football.csv"));
+loader.load();
+const matches = loader.data;
 
 let chelseaWins = 0;
 
