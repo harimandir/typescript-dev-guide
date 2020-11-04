@@ -1,6 +1,5 @@
-import fs from "fs";
-import { dateStringToDate } from "./utils";
-import { MatchResult } from "./MatchResult";
+import { dateStringToDate } from "../utils";
+import { MatchResult } from "../MatchResult";
 import { CsvFileReader } from "./CsvFileReader";
 
 type Match = [Date, string, string, number, number, MatchResult, string];

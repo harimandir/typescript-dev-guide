@@ -1,4 +1,4 @@
-import { FootballMatchCsvFileReader } from "./FootballMatchCsvFileReader";
+import { FootballMatchCsvFileReader } from "./inheritance/FootballMatchCsvFileReader";
 import { MatchResult } from "./MatchResult";
 
 const reader = new FootballMatchCsvFileReader("football.csv");
