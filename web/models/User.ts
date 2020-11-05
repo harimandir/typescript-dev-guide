@@ -3,9 +3,15 @@ interface UserProps {
   age?: number;
 }
 
+type EventListeners = {
+  [eventName: string]: Callback[];
+};
+
 type Callback = () => {};
 
 export class User {
+  private listeners: EventListeners[];
+
   constructor(private data: UserProps = {}) {}
 
   get(prop: string): string | number {
