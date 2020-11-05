@@ -12,6 +12,8 @@ Install dependencies in each project folder before first use
 
 ## Included projects
 
+Commands below are to be run in their project folders
+
 ### fetchjson
 
 Fetch JSON from placeholder API and output to console
@@ -71,3 +73,9 @@ Load, parse, analyze, and report CSV data
 `npm start`
 
 - Writes to console, `stats/wins.html`, and `stats/goals.html`
+
+### web
+
+Homegrown web framework
+
+`npx parcel index.html`
