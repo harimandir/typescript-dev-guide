@@ -23,5 +23,5 @@ module generics {
     }
   }
 
-  new ArrayOfAnything<string>(["something", "something else"]);
+  const array = new ArrayOfAnything(["something", "something else"]);
 }
