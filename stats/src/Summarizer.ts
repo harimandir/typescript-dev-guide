@@ -1,3 +1,6 @@
+import { MatchData } from "./MatchData";
+import { ConsoleReport } from "./targets/ConsoleReport";
+
 export interface Analyzer {
   run(): string;
 }

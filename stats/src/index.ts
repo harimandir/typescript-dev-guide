@@ -1,35 +1,10 @@
-import { FootballMatchLoader } from "./FootballMatchLoader";
-import { CsvFileReader } from "./CsvFileReader";
-import { Summarizer } from "./Summarizer";
-import { WinsAnalysis } from "./analyzers/WinsAnalysis";
-import { GoalsAnalysis } from "./analyzers/GoalsAnalysis";
-import { ConsoleReport } from "./targets/ConsoleReport";
-import { HtmlReport } from "./targets/HtmlReport";
+import { Import, Summarize } from "./Facades";
 
-const loader = new FootballMatchLoader(new CsvFileReader("football.csv"));
-loader.load();
-const matches = loader.data;
-
-const consoleReport = new ConsoleReport();
 const team = "Chelsea";
-let summarizer = new Summarizer(
-  new WinsAnalysis(team, matches),
-  consoleReport
-).report();
+const matches = Import.matches("football.csv");
 
-summarizer = new Summarizer(
-  new GoalsAnalysis(team, matches),
-  consoleReport
-).report();
+Summarize.winsToConsole(team, matches);
+Summarize.goalsToConsole(team, matches);
 
-let htmlReport = new HtmlReport("wins.html");
-summarizer = new Summarizer(
-  new WinsAnalysis(team, matches),
-  htmlReport
-).report();
-
-htmlReport = new HtmlReport("goals.html");
-summarizer = new Summarizer(
-  new GoalsAnalysis(team, matches),
-  htmlReport
-).report();
+Summarize.winsToHtml(team, matches, "wins.html");
+Summarize.goalsToHtml(team, matches, "goals.html");
