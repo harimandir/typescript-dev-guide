@@ -45,4 +45,32 @@ module generics {
   }
 
   printAnything<string>(["array", "of", "strings"]);
+
+  // Generic constraints using interfaces with extends in type annotations
+  interface Printable {
+    print(): void;
+  }
+
+  class Car implements Printable {
+    print(): void {
+      console.log("Car");
+    }
+  }
+
+  class House implements Printable {
+    print(): void {
+      console.log("House");
+    }
+  }
+
+  function print<T extends Printable>(array: T[]) {
+    for (let i = 0; i < array.length; i++) {
+      array[i].print();
+    }
+  }
+
+  print<House>([new House(), new House()]);
+  print<Car>([new Car(), new Car()]);
+  print<Printable>([new House(), new Car()]);
+  print([new Car(), new House()]);
 }
