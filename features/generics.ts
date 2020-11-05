@@ -24,4 +24,25 @@ module generics {
   }
 
   const array = new ArrayOfAnything(["something", "something else"]);
+
+  // Generics with functions
+  function printStrings(array: string[]): void {
+    for (let n = 0; n < array.length; n++) {
+      console.log(array[n]);
+    }
+  }
+
+  function printNumbers(array: number[]): void {
+    for (let n = 0; n < array.length; n++) {
+      console.log(array[n]);
+    }
+  }
+
+  function printAnything<T>(array: T[]): void {
+    for (let n = 0; n < array.length; n++) {
+      console.log(array[n]);
+    }
+  }
+
+  printAnything<string>(["array", "of", "strings"]);
 }
