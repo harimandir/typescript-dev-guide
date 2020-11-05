@@ -1,11 +1,12 @@
 import { Loader } from "./Loader";
-import { Summarize } from "./Factories";
+import { ConsoleReport } from "./reports/ConsoleReport";
+import { HtmlReport } from "./reports/HtmlReport";
 
 const team = "Chelsea";
 const matches = new Loader("football.csv").matches();
 
-Summarize.winsToConsole(team, matches);
-Summarize.goalsToConsole(team, matches);
+new ConsoleReport(team, matches).wins();
+new ConsoleReport(team, matches).goals();
 
-Summarize.winsToHtml(team, matches, "wins.html");
-Summarize.goalsToHtml(team, matches, "goals.html");
+new HtmlReport(team, matches, "wins.html").wins();
+new HtmlReport(team, matches, "goals.html").goals();
