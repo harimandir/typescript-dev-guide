@@ -7,15 +7,6 @@ import { ConsoleReport } from "./targets/ConsoleReport";
 import { HtmlReport } from "./targets/HtmlReport";
 import { MatchData } from "./MatchData";
 
-export abstract class Import {
-  static matches(filename: string): MatchData[] {
-    const fileReader = new CsvFileReader(filename);
-    const loader = new FootballMatchLoader(fileReader);
-    loader.load();
-    return loader.data;
-  }
-}
-
 export abstract class Summarize {
   static winsToConsole(team: string, matches: MatchData[]) {
     new Summarizer(

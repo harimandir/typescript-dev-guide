@@ -1,7 +1,8 @@
-import { Import, Summarize } from "./Facades";
+import { Loader } from "./Loader";
+import { Summarize } from "./Factories";
 
 const team = "Chelsea";
-const matches = Import.matches("football.csv");
+const matches = new Loader("football.csv").matches();
 
 Summarize.winsToConsole(team, matches);
 Summarize.goalsToConsole(team, matches);
