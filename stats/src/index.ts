@@ -1,19 +1,35 @@
 import { FootballMatchLoader } from "./FootballMatchLoader";
 import { CsvFileReader } from "./CsvFileReader";
-import { MatchResult } from "./MatchResult";
+import { Summarizer } from "./Summarizer";
+import { WinsAnalysis } from "./analyzers/WinsAnalysis";
+import { GoalsAnalysis } from "./analyzers/GoalsAnalysis";
+import { ConsoleReport } from "./targets/ConsoleReport";
+import { HtmlReport } from "./targets/HtmlReport";
 
 const loader = new FootballMatchLoader(new CsvFileReader("football.csv"));
 loader.load();
 const matches = loader.data;
 
-let chelseaWins = 0;
+const consoleReport = new ConsoleReport();
+const team = "Chelsea";
+let summarizer = new Summarizer(
+  new WinsAnalysis(team, matches),
+  consoleReport
+).report();
 
-for (let match of matches) {
-  if (match[1] === "Chelsea" && match[5] === MatchResult.HomeWin) {
-    chelseaWins++;
-  } else if (match[2] === "Chelsea" && match[5] === MatchResult.AwayWin) {
-    chelseaWins++;
-  }
-}
+summarizer = new Summarizer(
+  new GoalsAnalysis(team, matches),
+  consoleReport
+).report();
 
-console.log(`Chelsea won ${chelseaWins} games`);
+let htmlReport = new HtmlReport("wins.html");
+summarizer = new Summarizer(
+  new WinsAnalysis(team, matches),
+  htmlReport
+).report();
+
+htmlReport = new HtmlReport("goals.html");
+summarizer = new Summarizer(
+  new GoalsAnalysis(team, matches),
+  htmlReport
+).report();
