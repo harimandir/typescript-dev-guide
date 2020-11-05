@@ -27,4 +27,12 @@ export class User {
     listeners.push(handler);
     this.listeners[eventName] = listeners;
   }
+
+  trigger(eventName: string): void {
+    const handlers: Handler[] = this.listeners[eventName];
+    if (!handlers || handlers.length === 0) {
+      return;
+    }
+    handlers.forEach((handler) => handler());
+  }
 }
