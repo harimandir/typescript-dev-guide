@@ -3,14 +3,14 @@ interface UserProps {
   age?: number;
 }
 
-type EventListeners = {
-  [eventName: string]: Callback[];
+type Listeners = {
+  [eventName: string]: Handler[];
 };
 
-type Callback = () => void;
+type Handler = () => void;
 
 export class User {
-  private listeners: EventListeners[];
+  private listeners: Listeners[] = [];
 
   constructor(private data: UserProps = {}) {}
 
@@ -22,5 +22,9 @@ export class User {
     Object.assign(this.data, props);
   }
 
-  on(eventName: string, callback: Callback): void {}
+  on(eventName: string, handler: Handler): void {
+    const listeners = this.listeners[eventName] || [];
+    listeners.push(handler);
+    this.listeners[eventName] = listeners;
+  }
 }
