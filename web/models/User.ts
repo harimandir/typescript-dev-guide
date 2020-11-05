@@ -7,7 +7,7 @@ type EventListeners = {
   [eventName: string]: Callback[];
 };
 
-type Callback = () => {};
+type Callback = () => void;
 
 export class User {
   private listeners: EventListeners[];
