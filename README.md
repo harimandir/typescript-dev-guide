@@ -61,3 +61,13 @@ Sort arrays, strings, and linked lists using a single algorithm
 - Better yet, use `nodemon` and `concurrently` to do both at the same time
 
 `npm start`
+
+### stats
+
+Load, parse, analyze, and report CSV data
+
+- Outputs football match data analysis from a CSV file to console and html files
+
+`npm start`
+
+- Writes to console, `stats/wins.html`, and `stats/goals.html`
