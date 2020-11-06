@@ -8,13 +8,10 @@ export interface UserProps {
 }
 
 export class User {
-  events = new EventManager();
-  sync: Sync;
-  private resourcePath: string = "http://localhost:3000/users";
+  events: EventManager = new EventManager();
+  sync: Sync<UserProps> = new Sync<UserProps>("http://localhost:3000/users");
 
-  constructor(private data: UserProps = {}) {
-    this.sync = new Sync(this.resourcePath);
-  }
+  constructor(private data: UserProps = {}) {}
 
   get(prop: string): string | number {
     return this.data[prop];
