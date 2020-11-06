@@ -1,14 +1,17 @@
 import axios, { AxiosPromise } from "axios";
-import { UserProps } from "./User";
 
-export class Sync {
+interface Props {
+  id: number;
+}
+
+export class Sync<T extends Props> {
   constructor(public resourcePath: string) {}
 
   fetch(id: number): AxiosPromise {
     return axios.get(`${this.resourcePath}/${id}`);
   }
 
-  save(data: UserProps): AxiosPromise {
+  save(data: T): AxiosPromise {
     const { id } = data;
     if (id) {
       return axios.put(`${this.resourcePath}/${id}`, data);
