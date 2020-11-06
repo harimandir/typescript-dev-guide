@@ -1,4 +1,3 @@
-import { AxiosPromise } from "axios";
 import { Attributes } from "./Attributes";
 import { EventManager } from "./EventManager";
 import { Sync } from "./Sync";
