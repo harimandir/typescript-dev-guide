@@ -6,7 +6,7 @@ export interface Attributes<T> {
   set(props: T): void;
 }
 
-export interface Sync<T extends Props> {
+export interface Sync<T> {
   fetch(id: number): AxiosPromise;
   save(data: T): AxiosPromise;
 }
@@ -22,12 +22,20 @@ export interface Events {
 
 export type EventHandler = () => void;
 
-export abstract class Model<T> {
-  constructor(
-    private data: Attributes<T>,
-    private sync: Sync<T>,
-    private events: Events
-  ) {}
+export abstract class Model<T extends Props> {
+  private data: Attributes<T>;
+  private sync: Sync<T>;
+  private events: Events;
+
+  protected buildModel(
+    data: Attributes<T>,
+    sync: Sync<T>,
+    events: Events
+  ): void {
+    this.data = data;
+    this.sync = sync;
+    this.events = events;
+  }
 
   get get(): Function {
     return this.data.get;

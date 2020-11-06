@@ -9,12 +9,25 @@ export interface UserProps {
   age?: number;
 }
 
+enum ModelType {
+  Database = "db",
+}
+
 export class User extends Model<UserProps> {
-  constructor(data: UserProps = {}) {
-    super(
-      new Attributes<UserProps>(data),
-      new DbSync<UserProps>("/users"),
-      new EventManager()
-    );
+  constructor(data: UserProps = {}, modelType: ModelType = ModelType.Database) {
+    super();
+
+    switch (modelType) {
+      case ModelType.Database:
+        this.buildModel(
+          new Attributes<UserProps>(data),
+          new DbSync<UserProps>("/users"),
+          new EventManager()
+        );
+        break;
+
+      default:
+        throw new Error(`Unsupported model type: ${modelType}`);
+    }
   }
 }
