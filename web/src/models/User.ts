@@ -30,8 +30,4 @@ export class User extends Model<UserProps> {
         throw new Error(`Unsupported model type: ${modelType}`);
     }
   }
-
-  isAdminUser(): boolean {
-    return this.get("id") === 1;
-  }
 }
