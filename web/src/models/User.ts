@@ -1,7 +1,7 @@
-import { AxiosResponse } from "axios";
+import { Model } from "./Model";
 import { Attributes } from "./Attributes";
+import { DbSync } from "./DbSync";
 import { EventManager } from "./EventManager";
-import { Sync } from "./Sync";
 
 export interface UserProps {
   id?: number;
@@ -9,48 +9,12 @@ export interface UserProps {
   age?: number;
 }
 
-export class User {
-  protected data: Attributes<UserProps>;
-  protected events: EventManager = new EventManager();
-  protected sync: Sync<UserProps> = new Sync<UserProps>(
-    "http://localhost:4995/users"
-  );
-
+export class User extends Model<UserProps> {
   constructor(data: UserProps = {}) {
-    this.data = new Attributes<UserProps>(data);
-  }
-
-  get get(): Function {
-    return this.data.get;
-  }
-
-  get on(): Function {
-    return this.events.on;
-  }
-
-  get trigger(): Function {
-    return this.events.trigger;
-  }
-
-  set(props: UserProps): void {
-    this.data.set(props);
-    this.events.trigger("change");
-  }
-
-  fetch(): void {
-    const id = this.get("id");
-    if (typeof id !== "number") {
-      throw new Error("Cannot fetch data for user without id");
-    }
-    this.sync
-      .fetch(id)
-      .then((response: AxiosResponse): void => this.set(response.data));
-  }
-
-  save(): void {
-    this.sync
-      .save(this.data.getAll())
-      .then((response: AxiosResponse): void => this.trigger("save"))
-      .catch((): void => this.trigger("error"));
+    super(
+      new Attributes<UserProps>(data),
+      new DbSync<UserProps>("/users"),
+      new EventManager()
+    );
   }
 }
