@@ -14,15 +14,33 @@ export class UserForm {
     console.log("button clicked");
   }
 
+  onHeaderMouseover(): void {
+    console.log("header mouseover");
+  }
+
   events(): { [key: string]: () => void } {
     return {
       "click:button": this.onButtonClick,
+      "mouseover:h1": this.onHeaderMouseover,
     };
+  }
+
+  bindEvents(fragment: DocumentFragment): void {
+    const events = this.events();
+    for (let key in events) {
+      const [eventName, selector] = key.split(":");
+      const elements = fragment.querySelectorAll(selector);
+      elements.forEach((element) =>
+        element.addEventListener(eventName, events[key])
+      );
+    }
   }
 
   render(): void {
     const templateElement = document.createElement("template");
     templateElement.innerHTML = this.template();
-    this.parent.append(templateElement.content);
+    const content = templateElement.content;
+    this.bindEvents(content);
+    this.parent.append(content);
   }
 }
