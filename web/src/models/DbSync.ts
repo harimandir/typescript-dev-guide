@@ -2,11 +2,7 @@ import axios, { AxiosPromise } from "axios";
 import { Sync, Props } from "./Model";
 
 export class DbSync<T extends Props> implements Sync<T> {
-  public resourcePath: string;
-
-  constructor(resource: string) {
-    this.resourcePath = `http://localhost:4995${resource}`;
-  }
+  constructor(private resourcePath: string) {}
 
   fetch(id: number): AxiosPromise {
     return axios.get(`${this.resourcePath}/${id}`);
