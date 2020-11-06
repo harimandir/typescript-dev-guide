@@ -1,6 +1,4 @@
 import { User } from "../models/User";
 
-const user = new User({ id: 1 });
-user.fetch();
-
-setTimeout(() => console.log(user), 1000);
+const user = new User({ name: "Unborn", age: 0 });
+user.save();
