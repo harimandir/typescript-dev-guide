@@ -1,5 +1,5 @@
 export class Attributes<T> {
-  data: T;
+  constructor(public data: T) {}
 
   get(prop: string): string | number {
     return this.data[prop];
