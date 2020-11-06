@@ -1,4 +1,5 @@
 import axios, { AxiosResponse } from "axios";
+import { EventManager } from "./EventManager";
 
 interface UserProps {
   id?: number;
@@ -7,6 +8,7 @@ interface UserProps {
 }
 
 export class User {
+  events = new EventManager();
   private resourcePath: string = "http://localhost:3000/users";
 
   constructor(private data: UserProps = {}) {}
