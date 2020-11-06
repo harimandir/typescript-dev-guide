@@ -1,3 +1,4 @@
+import { AxiosResponse } from "axios";
 import { Attributes } from "./Attributes";
 import { EventManager } from "./EventManager";
 import { Sync } from "./Sync";
@@ -34,5 +35,15 @@ export class User {
   set(props: UserProps): void {
     this.data.set(props);
     this.events.trigger("change");
+  }
+
+  fetch(): void {
+    const id = this.get("id");
+    if (typeof id !== "number") {
+      throw new Error("Cannot fetch data for user without id");
+    }
+    this.sync
+      .fetch(id)
+      .then((response: AxiosResponse): void => this.set(response.data));
   }
 }
