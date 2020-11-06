@@ -1,8 +1,8 @@
 export class Attributes<T> {
   constructor(public data: T) {}
 
-  get(prop: string): string | number {
-    return this.data[prop];
+  get<K extends keyof T>(key: K): T[K] {
+    return this.data[key];
   }
 
   set(props: T): void {
