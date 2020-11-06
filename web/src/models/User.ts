@@ -12,7 +12,7 @@ export class User {
   protected data: Attributes<UserProps>;
   protected events: EventManager = new EventManager();
   protected sync: Sync<UserProps> = new Sync<UserProps>(
-    "http://localhost:3000/users"
+    "http://localhost:4995/users"
   );
 
   constructor(data: UserProps = {}) {
@@ -29,5 +29,10 @@ export class User {
 
   get trigger(): Function {
     return this.events.trigger;
+  }
+
+  set(props: UserProps): void {
+    this.data.set(props);
+    this.events.trigger("change");
   }
 }
