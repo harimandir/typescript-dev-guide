@@ -9,11 +9,11 @@ export interface UserProps {
 }
 
 export class User {
-  data: Attributes<UserProps> = new Attributes<UserProps>();
+  data: Attributes<UserProps>;
   events: EventManager = new EventManager();
   sync: Sync<UserProps> = new Sync<UserProps>("http://localhost:3000/users");
 
   constructor(data: UserProps = {}) {
-    this.data.set(data);
+    this.data = new Attributes<UserProps>(data);
   }
 }
