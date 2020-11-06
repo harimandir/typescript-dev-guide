@@ -6,15 +6,8 @@ interface UserProps {
   age?: number;
 }
 
-type Listeners = {
-  [eventName: string]: Handler[];
-};
-
-type Handler = () => void;
-
 export class User {
-  private listeners: Listeners[] = [];
-  private resourcePath: string = "http://localhost:9849/users";
+  private resourcePath: string = "http://localhost:3000/users";
 
   constructor(private data: UserProps = {}) {}
 
@@ -24,20 +17,6 @@ export class User {
 
   set(props: UserProps): void {
     Object.assign(this.data, props);
-  }
-
-  on(eventName: string, handler: Handler): void {
-    const listeners = this.listeners[eventName] || [];
-    listeners.push(handler);
-    this.listeners[eventName] = listeners;
-  }
-
-  trigger(eventName: string): void {
-    const handlers: Handler[] = this.listeners[eventName];
-    if (!handlers || handlers.length === 0) {
-      return;
-    }
-    handlers.forEach((handler) => handler());
   }
 
   fetch(): void {
