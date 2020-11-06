@@ -46,4 +46,11 @@ export class User {
       .fetch(id)
       .then((response: AxiosResponse): void => this.set(response.data));
   }
+
+  save(): void {
+    this.sync
+      .save(this.data.getAll())
+      .then((response: AxiosResponse): void => this.trigger("save"))
+      .catch((): void => this.trigger("error"));
+  }
 }
