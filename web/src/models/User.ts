@@ -14,7 +14,7 @@ type Handler = () => void;
 
 export class User {
   private listeners: Listeners[] = [];
-  private resourcePath: string = "http://localhost:3000/users";
+  private resourcePath: string = "http://localhost:9849/users";
 
   constructor(private data: UserProps = {}) {}
 
