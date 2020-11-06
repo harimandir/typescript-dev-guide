@@ -1,3 +1,4 @@
+import { AxiosPromise } from "axios";
 import { Attributes } from "./Attributes";
 import { EventManager } from "./EventManager";
 import { Sync } from "./Sync";
@@ -9,11 +10,25 @@ export interface UserProps {
 }
 
 export class User {
-  data: Attributes<UserProps>;
-  events: EventManager = new EventManager();
-  sync: Sync<UserProps> = new Sync<UserProps>("http://localhost:3000/users");
+  protected data: Attributes<UserProps>;
+  protected events: EventManager = new EventManager();
+  protected sync: Sync<UserProps> = new Sync<UserProps>(
+    "http://localhost:3000/users"
+  );
 
   constructor(data: UserProps = {}) {
     this.data = new Attributes<UserProps>(data);
+  }
+
+  get get(): Function {
+    return this.data.get;
+  }
+
+  get on(): Function {
+    return this.events.on;
+  }
+
+  get trigger(): Function {
+    return this.events.trigger;
   }
 }
