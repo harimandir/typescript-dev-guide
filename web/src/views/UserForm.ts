@@ -5,9 +5,19 @@ export class UserForm {
     return `
         <div>
             <h1>User Form</h1>
-            <input />
+            <input /> <button>Button</button>
         </div>
     `;
+  }
+
+  onButtonClick(): void {
+    console.log("button clicked");
+  }
+
+  events(): { [key: string]: () => void } {
+    return {
+      "click:button": this.onButtonClick,
+    };
   }
 
   render(): void {
