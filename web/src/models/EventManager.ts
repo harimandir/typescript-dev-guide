@@ -5,12 +5,12 @@ type Listeners = {
 };
 
 export class EventManager implements Events {
-  private listeners: Listeners[] = [];
+  private listeners: Listeners = {};
 
   on = (eventName: string, handler: EventHandler): void => {
-    const listeners = this.listeners[eventName] || [];
-    listeners.push(handler);
-    this.listeners[eventName] = listeners;
+    const handlers = this.listeners[eventName] || [];
+    handlers.push(handler);
+    this.listeners[eventName] = handlers;
   };
 
   trigger = (eventName: string): void => {
