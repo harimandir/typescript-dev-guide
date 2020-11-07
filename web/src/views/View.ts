@@ -1,11 +1,14 @@
 import { Model } from "../models/Model";
 
 export abstract class View<T extends Model<K>, K> {
-  abstract events(): { [key: string]: () => void };
   abstract template(): string;
 
   constructor(public parent: Element, public model: T) {
     this.bindModel();
+  }
+
+  events(): { [key: string]: () => void } {
+    return {};
   }
 
   private bindModel(): void {
