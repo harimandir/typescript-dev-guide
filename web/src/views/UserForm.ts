@@ -19,7 +19,7 @@ export class UserForm {
 
   events(): { [key: string]: () => void } {
     return {
-      "click:button[data-id=set-age]": this.randomizeAge,
+      "click:button[data-id=set-age]": this.onRandomizeAgeClick,
     };
   }
 
@@ -34,9 +34,8 @@ export class UserForm {
     }
   }
 
-  randomizeAge = (): void => {
-    const randomAge = Math.round(Math.random() * 114);
-    this.model.set({ age: randomAge });
+  onRandomizeAgeClick = (): void => {
+    this.model.randomizeAge();
   };
 
   render(): void {

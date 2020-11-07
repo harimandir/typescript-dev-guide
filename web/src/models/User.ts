@@ -40,4 +40,9 @@ export class User extends Model<UserProps> {
         throw new Error(`Unsupported model type: ${modelType}`);
     }
   }
+
+  randomizeAge = (): void => {
+    const randomAge = Math.round(Math.random() * 114);
+    this.set({ age: randomAge });
+  };
 }
