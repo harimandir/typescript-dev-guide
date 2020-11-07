@@ -23,19 +23,11 @@ export interface Events {
 export type EventHandler = () => void;
 
 export abstract class Model<T extends Props> {
-  private data: Attributes<T>;
-  private sync: Sync<T>;
-  private events: Events;
-
-  protected buildModel(
-    data: Attributes<T>,
-    sync: Sync<T>,
-    events: Events
-  ): void {
-    this.data = data;
-    this.sync = sync;
-    this.events = events;
-  }
+  protected constructor(
+    private data: Attributes<T>,
+    private sync: Sync<T>,
+    private events: Events
+  ) {}
 
   get get(): Function {
     return this.data.get;

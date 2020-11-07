@@ -1,4 +1,4 @@
-import { Model } from "./Model";
+import { Model, Sync, Events } from "./Model";
 import { Attributes } from "./Attributes";
 import { DbSync } from "./DbSync";
 import { EventManager } from "./EventManager";
@@ -14,22 +14,16 @@ enum ModelType {
   Database = "db",
 }
 
-const resourcePath = `http://localhost:3000/users`;
+const resourcePath = `http://localhost:12288/users`;
 
 export class User extends Model<UserProps> {
-  static buildCollection(): Collection<User, UserProps> {
-    return new Collection<User, UserProps>(
-      resourcePath,
-      (data: UserProps): User => new User(data)
-    );
-  }
-
-  constructor(data: UserProps = {}, modelType: ModelType = ModelType.Database) {
-    super();
-
+  static getInstance(
+    data: UserProps = {},
+    modelType: ModelType = ModelType.Database
+  ): User {
     switch (modelType) {
       case ModelType.Database:
-        this.buildModel(
+        return new User(
           new Attributes<UserProps>(data),
           new DbSync<UserProps>(resourcePath),
           new EventManager()
@@ -39,6 +33,21 @@ export class User extends Model<UserProps> {
       default:
         throw new Error(`Unsupported model type: ${modelType}`);
     }
+  }
+
+  static buildCollection(): Collection<User, UserProps> {
+    return new Collection<User, UserProps>(
+      resourcePath,
+      (data: UserProps): User => User.getInstance(data)
+    );
+  }
+
+  protected constructor(
+    data: Attributes<UserProps>,
+    sync: Sync<UserProps>,
+    events: Events
+  ) {
+    super(data, sync, events);
   }
 
   randomizeAge = (): void => {
