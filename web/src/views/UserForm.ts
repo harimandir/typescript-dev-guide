@@ -1,10 +1,14 @@
+import { User } from "../models/User";
+
 export class UserForm {
-  constructor(public parent: Element) {}
+  constructor(public parent: Element, public model: User) {}
 
   template(): string {
     return `
         <div>
             <h1>User Form</h1>
+            <div>Name: ${this.model.get("name")}</div>
+            <div>Age: ${this.model.get("age")}</div>
             <input /> <button>Button</button>
         </div>
     `;
