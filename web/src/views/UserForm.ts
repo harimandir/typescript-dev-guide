@@ -3,16 +3,12 @@ import { View } from "../views/View";
 
 export class UserForm extends View<User, UserProps> {
   template(): string {
-    const name = this.model.get("name");
-
     return `
         <div>
-            <h1>User Form</h1>
-            <div>Name: ${name}</div>
-            <div>Age: ${this.model.get("age")}</div>
-            Name: <input name="name" placeholder="${name}" />
+            Name: <input name="name" placeholder="${this.model.get("name")}" />
             <button data-id="set-name">Change Name</button>
             <button data-id="set-age">Randomize Age</button>
+            <button data-id="save">Save</button>
         </div>
     `;
   }
@@ -21,6 +17,7 @@ export class UserForm extends View<User, UserProps> {
     return {
       "click:button[data-id=set-name]": this.onChangeNameClick,
       "click:button[data-id=set-age]": this.onRandomizeAgeClick,
+      "click:button[data-id=save]": this.onSaveClick,
     };
   }
 
@@ -34,6 +31,10 @@ export class UserForm extends View<User, UserProps> {
 
   onRandomizeAgeClick = (): void => {
     this.model.randomizeAge();
+  };
+
+  onSaveClick = (): void => {
+    this.model.save();
   };
 
   render(): void {
