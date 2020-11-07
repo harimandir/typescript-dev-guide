@@ -1,14 +1,7 @@
-import { User } from "../models/User";
+import { View } from "../views/View";
+// import { User } from "../models/User";
 
-export class UserForm {
-  constructor(public parent: Element, public model: User) {
-    this.bindModel();
-  }
-
-  private bindModel(): void {
-    this.model.on("change", () => this.render());
-  }
-
+export class UserForm extends View {
   template(): string {
     const name = this.model.get("name");
 
@@ -29,17 +22,6 @@ export class UserForm {
       "click:button[data-id=set-name]": this.onChangeNameClick,
       "click:button[data-id=set-age]": this.onRandomizeAgeClick,
     };
-  }
-
-  bindEvents(fragment: DocumentFragment): void {
-    const events = this.events();
-    for (let key in events) {
-      const [eventName, selector] = key.split(":");
-      const elements = fragment.querySelectorAll(selector);
-      elements.forEach((element) =>
-        element.addEventListener(eventName, events[key])
-      );
-    }
   }
 
   onChangeNameClick = (): void => {

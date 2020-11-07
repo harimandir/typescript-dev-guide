@@ -14,7 +14,7 @@ enum ModelType {
   Database = "db",
 }
 
-const resourcePath = `http://localhost:12288/users`;
+const resourcePath = `http://localhost:3000/users`;
 
 export class User extends Model<UserProps> {
   static getInstance(
