@@ -1,7 +1,9 @@
 import { User } from "../models/User";
 
 export class UserForm {
-  constructor(public parent: Element, public model: User) {}
+  constructor(public parent: Element, public model: User) {
+    this.model.on("change", () => this.render());
+  }
 
   template(): string {
     return `
@@ -10,22 +12,14 @@ export class UserForm {
             <div>Name: ${this.model.get("name")}</div>
             <div>Age: ${this.model.get("age")}</div>
             <input /> <button>Button</button>
+            <button data-id="set-age">Randomize Age</button>
         </div>
     `;
   }
 
-  onButtonClick(): void {
-    console.log("button clicked");
-  }
-
-  onHeaderMouseover(): void {
-    console.log("header mouseover");
-  }
-
   events(): { [key: string]: () => void } {
     return {
-      "click:button": this.onButtonClick,
-      "mouseover:h1": this.onHeaderMouseover,
+      "click:button[data-id=set-age]": this.randomizeAge,
     };
   }
 
@@ -40,11 +34,21 @@ export class UserForm {
     }
   }
 
+  randomizeAge = (): void => {
+    const randomAge = Math.round(Math.random() * 114);
+    this.model.set({ age: randomAge });
+  };
+
   render(): void {
     const templateElement = document.createElement("template");
     templateElement.innerHTML = this.template();
     const content = templateElement.content;
     this.bindEvents(content);
-    this.parent.append(content);
+
+    if (this.parent.firstElementChild) {
+      this.parent.replaceChild(content, this.parent.firstElementChild);
+    } else {
+      this.parent.append(content);
+    }
   }
 }
