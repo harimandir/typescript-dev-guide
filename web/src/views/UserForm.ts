@@ -15,7 +15,7 @@ export class UserForm {
             <h1>User Form</h1>
             <div>Name: ${this.model.get("name")}</div>
             <div>Age: ${this.model.get("age")}</div>
-            <input /> <button>Button</button>
+            Name: <input name="name" /> <button data-id="set-name">Save</button>
             <button data-id="set-age">Randomize Age</button>
         </div>
     `;
@@ -23,6 +23,7 @@ export class UserForm {
 
   events(): { [key: string]: () => void } {
     return {
+      "click:button[data-id=set-name]": this.onSaveClick,
       "click:button[data-id=set-age]": this.onRandomizeAgeClick,
     };
   }
@@ -37,6 +38,14 @@ export class UserForm {
       );
     }
   }
+
+  onSaveClick = (): void => {
+    const input = this.parent.querySelector(
+      "input[name=name]"
+    ) as HTMLInputElement;
+    const name = input.value;
+    this.model.set({ name });
+  };
 
   onRandomizeAgeClick = (): void => {
     this.model.randomizeAge();
