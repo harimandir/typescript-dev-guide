@@ -18,7 +18,7 @@ export abstract class View<T extends Model<K>, K> {
     const content = templateElement.content;
 
     templateElement.innerHTML = this.template();
-    this.parent.innerHTML = "";
+    this.parent.textContent = "";
 
     this.bindEvents(content);
     this.bindContentElements(content);
