@@ -35,7 +35,7 @@ export class User extends Model<UserProps> {
     }
   }
 
-  static buildCollection(): Collection<User, UserProps> {
+  static getCollection(): Collection<User, UserProps> {
     return new Collection<User, UserProps>(
       resourcePath,
       (data: UserProps): User => User.getInstance(data)
