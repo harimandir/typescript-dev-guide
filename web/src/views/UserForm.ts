@@ -36,17 +36,4 @@ export class UserForm extends View<User, UserProps> {
   onSaveClick = (): void => {
     this.model.save();
   };
-
-  render(): void {
-    const templateElement = document.createElement("template");
-    templateElement.innerHTML = this.template();
-    const content = templateElement.content;
-    this.bindEvents(content);
-
-    if (this.parent.firstElementChild) {
-      this.parent.replaceChild(content, this.parent.firstElementChild);
-    } else {
-      this.parent.append(content);
-    }
-  }
 }
