@@ -8,7 +8,6 @@ if (root) {
     UserModel.getInstance({ name: "Morgan", age: 42 })
   );
   user.render();
-  console.log(user);
 } else {
   throw new Error("root element not found in document");
 }

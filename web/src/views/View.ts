@@ -9,12 +9,21 @@ export abstract class View<T extends Model<K>, K> {
     this.bindModel();
   }
 
-  events(): { [key: string]: () => void } {
-    return {};
-  }
-
   private bindModel(): void {
     this.model.on("change", () => this.render());
+  }
+
+  render(): void {
+    const templateElement = document.createElement("template");
+    const content = templateElement.content;
+
+    templateElement.innerHTML = this.template();
+    this.parent.innerHTML = "";
+
+    this.bindEvents(content);
+    this.bindContentElements(content);
+    this.onRender();
+    this.parent.append(content);
   }
 
   protected bindEvents(fragment: DocumentFragment): void {
@@ -28,19 +37,8 @@ export abstract class View<T extends Model<K>, K> {
     }
   }
 
-  render(): void {
-    const templateElement = document.createElement("template");
-    templateElement.innerHTML = this.template();
-    const content = templateElement.content;
-
-    this.bindEvents(content);
-    this.bindContentElements(content);
-
-    if (this.parent.firstElementChild) {
-      this.parent.replaceChild(content, this.parent.firstElementChild);
-    } else {
-      this.parent.append(content);
-    }
+  events(): { [key: string]: () => void } {
+    return {};
   }
 
   bindContentElements(content: DocumentFragment): void {
@@ -53,6 +51,8 @@ export abstract class View<T extends Model<K>, K> {
       }
     }
   }
+
+  onRender(): void {}
 
   contentSelectors(): { [contentName: string]: string } {
     return {};
