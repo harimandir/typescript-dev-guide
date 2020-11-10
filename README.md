@@ -79,3 +79,9 @@ Load, parse, analyze, and report CSV data
 Homegrown web framework
 
 `npx parcel index.html`
+
+### server
+
+Express server with TypeScript
+
+`npm start`
