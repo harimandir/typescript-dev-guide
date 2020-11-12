@@ -1,5 +1,5 @@
 import { router } from "./root";
-import { Router, Request, Response } from "express";
+import { Request, Response } from "express";
 
 router.get("/login", (req: Request, res: Response) => {
   res.send(`
