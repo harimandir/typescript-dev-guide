@@ -1,4 +1,5 @@
 module decorators {
+  @classDecorator
   class Boat {
     @propertyDecorator
     color: string = "red";
@@ -14,7 +15,11 @@ module decorators {
       @parameterDecorator wake: boolean
     ): void {
       throw new Error();
-      console.log("float");
+      console.log(
+        `float the boat, and moving at ${speed} knots - wake is ${
+          wake ? "" : "not "
+        } allowed`
+      );
     }
   }
 
@@ -36,7 +41,9 @@ module decorators {
   }
 
   function logError(message: string) {
+    // logError is a decorator factory
     return function (target: any, key: string, desc: PropertyDescriptor): void {
+      // method decorators give the object prototype, method name, and method property descriptor
       const method = desc.value;
 
       desc.value = function () {
@@ -52,5 +59,11 @@ module decorators {
   function parameterDecorator(target: any, key: string, index: number) {
     // parameter decorators give the method name and the argument index
     console.log({ target, key, index });
+  }
+
+  function classDecorator(constructor: typeof Boat) {
+    // class decorators give the constructor method
+    // this is evaluated after the properties, accessors, methods, and parameters
+    console.log({ constructor });
   }
 }
