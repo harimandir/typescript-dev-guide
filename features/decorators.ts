@@ -6,14 +6,14 @@ module decorators {
       return `This boat is ${this.color}`;
     }
 
+    @logError
     pilot(): void {
+      throw new Error("sink");
       console.log("float");
     }
   }
 
-  function testDecorator(target: any, key: string): void {
-    console.log({ target, key });
+  function logError(target: any, key: string, desc: PropertyDescriptor): void {
+    console.log({ target, key, desc });
   }
-
-  testDecorator(Boat.prototype, "pilot");
 }
