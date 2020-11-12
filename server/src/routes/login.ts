@@ -1,7 +1,8 @@
-import { router } from "./root";
-import { Request, Response } from "express";
+import { Router, Request, Response } from "express";
 
-router.get("/login", (req: Request, res: Response) => {
+const router = Router();
+
+router.get("/", (req: Request, res: Response) => {
   res.send(`
     <form method="post">
       <div>
@@ -17,7 +18,7 @@ router.get("/login", (req: Request, res: Response) => {
   `);
 });
 
-router.post("/login", (req: Request, res: Response) => {
+router.post("/", (req: Request, res: Response) => {
   const { email, password } = req.body;
 
   if (email === "email" && password === "password") {

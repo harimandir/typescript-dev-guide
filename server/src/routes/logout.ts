@@ -1,7 +1,8 @@
-import { router } from "./login";
-import { Request, Response } from "express";
+import { Router, Request, Response } from "express";
 
-router.get("/logout", (req: Request, res: Response) => {
+const router = Router();
+
+router.get("/", (req: Request, res: Response) => {
   req.session = null;
   res.redirect("/");
 });
