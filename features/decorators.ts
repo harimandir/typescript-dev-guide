@@ -6,7 +6,6 @@ module decorators {
       return `This boat is ${this.color}`;
     }
 
-    @testDecorator
     pilot(): void {
       console.log("float");
     }
@@ -15,4 +14,6 @@ module decorators {
   function testDecorator(target: any, key: string): void {
     console.log({ target, key });
   }
+
+  testDecorator(Boat.prototype, "pilot");
 }
