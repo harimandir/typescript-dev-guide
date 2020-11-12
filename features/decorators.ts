@@ -3,6 +3,7 @@ module decorators {
     @propertyDecorator
     color: string = "red";
 
+    @accessorDecorator
     get formattedColor(): string {
       return `This boat is ${this.color}`;
     }
@@ -15,9 +16,20 @@ module decorators {
   }
 
   function propertyDecorator(target: any, key: string) {
-    // desc is not included in the function signature
+    // PropertyDescriptor is not included in the function signature
     // and the property value is not accsesible because it is assigned at runtime
-    console.log({ target, key }, `target.${key} == ${target.key}`);
+    console.log({ target, key }, `target.${key} == ${target[key]}`);
+  }
+
+  function accessorDecorator(
+    target: any,
+    key: string,
+    desc: PropertyDescriptor
+  ) {
+    // this works just like any other method
+    // PropertyDescriptor is included in the function signature
+    // and the accessor is a property of the prototype
+    console.log({ target, key, desc }, `target.${key} == ${target[key]}`);
   }
 
   function logError(message: string) {
