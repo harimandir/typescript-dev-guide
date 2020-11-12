@@ -8,12 +8,24 @@ module decorators {
 
     @logError
     pilot(): void {
-      throw new Error("sink");
+      throw new Error("sunk");
       console.log("float");
     }
   }
 
   function logError(target: any, key: string, desc: PropertyDescriptor): void {
-    console.log({ target, key, desc });
+    const method = desc.value;
+
+    desc.value = function () {
+      try {
+        method();
+      } catch (e: any) {
+        if (e instanceof Error) {
+          console.log(e.message);
+        }
+      }
+    };
   }
+
+  new Boat().pilot();
 }
