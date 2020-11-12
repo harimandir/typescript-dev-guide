@@ -9,7 +9,10 @@ module decorators {
     }
 
     @logError("sunk")
-    pilot(): void {
+    pilot(
+      @parameterDecorator speed: number,
+      @parameterDecorator wake: boolean
+    ): void {
       throw new Error();
       console.log("float");
     }
@@ -44,5 +47,10 @@ module decorators {
         }
       };
     };
+  }
+
+  function parameterDecorator(target: any, key: string, index: number) {
+    // parameter decorators give the method name and the argument index
+    console.log({ target, key, index });
   }
 }
