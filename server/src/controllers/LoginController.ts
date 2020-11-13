@@ -33,4 +33,10 @@ class LoginController {
       res.send("Invalid login");
     }
   }
+
+  @get("/logout")
+  getLogout(req: Request, res: Response): void {
+    req.session = null;
+    res.redirect("/");
+  }
 }
