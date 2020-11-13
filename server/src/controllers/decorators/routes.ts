@@ -1,5 +1,4 @@
 import "reflect-metadata";
-
 import { MetadataKeys } from "./MetadataKeys";
 import { Methods } from "./Methods";
 

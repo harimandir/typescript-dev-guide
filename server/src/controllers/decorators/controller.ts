@@ -1,10 +1,8 @@
 import "reflect-metadata";
 import { Request, Response, NextFunction, RequestHandler } from "express";
-
 import { AppRouter } from "../../AppRouter";
 import { Methods } from "./Methods";
 import { MetadataKeys } from "./MetadataKeys";
-import { requiredValues } from "./requiredValues";
 
 export function controller(routePrefix: string): Function {
   return function (targetConstructor: Function): void {
@@ -20,15 +18,15 @@ export function controller(routePrefix: string): Function {
 
       if (path !== undefined) {
         const required: string[] =
-          Reflect.getMetadata(MetadataKeys.RequiredValues, prototype, key) ??
+          Reflect.getMetadata(MetadataKeys.RequiredInputs, prototype, key) ??
           [];
-        let validateRequired = validateRequiredValues(required);
+        let validateInput = buildRequiredInputsValidator(required);
 
         const middlewares: RequestHandler[] =
-          Reflect.getMetadata(MetadataKeys.Middlware, prototype, key) ?? [];
+          Reflect.getMetadata(MetadataKeys.Middleware, prototype, key) ?? [];
         AppRouter.getInstance()[method](
           `${routePrefix}${path}`,
-          validateRequired,
+          validateInput,
           ...middlewares,
           routeHandler
         );
@@ -37,12 +35,15 @@ export function controller(routePrefix: string): Function {
   };
 }
 
-function validateRequiredValues(props: string[]): RequestHandler {
+function buildRequiredInputsValidator(props: string[]): RequestHandler {
   return function (req: Request, res: Response, next: NextFunction): void {
     if (props) {
-      for (let prop in props) {
-        if (req.body[prop] === undefined) {
-          res.status(400).send(`<div>Invalid request</div>`);
+      for (let prop of props) {
+        if (req?.body[prop] === undefined) {
+          res.status(422).send(`
+          <div>Invalid request</div>
+          <div>${prop} required</div>
+          `);
           return;
         }
       }

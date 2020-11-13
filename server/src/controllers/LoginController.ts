@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
-import { get, controller } from "./decorators";
+import { get, controller, post } from "./decorators";
 import { Methods } from "./decorators/Methods";
+import { requiredInputs } from "./decorators/requiredInputs";
 
 @controller("/auth")
 class LoginController {
@@ -19,5 +20,17 @@ class LoginController {
           <button>Submit</button>
         </form>
       `);
+  }
+
+  @post("/login")
+  @requiredInputs("email", "password")
+  postLogin(req: Request, res: Response): void {
+    const { email, password } = req.body;
+    if (email === "email" && password === "password") {
+      req.session = { loggedIn: true };
+      res.redirect("/");
+    } else {
+      res.send("Invalid login");
+    }
   }
 }
