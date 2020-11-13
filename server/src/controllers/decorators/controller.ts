@@ -1,7 +1,5 @@
 import "reflect-metadata";
-import { Router } from "express";
-
-export const router = Router();
+import { AppRouter } from "../../AppRouter";
 
 export function controller(routePrefix: string): Function {
   return function (targetContructor: Function): void {
@@ -11,7 +9,7 @@ export function controller(routePrefix: string): Function {
       const path = Reflect.getMetadata("path", prototype, key);
 
       if (path !== undefined) {
-        router.get(`${routePrefix}${path}`, routeHandler);
+        AppRouter.getInstance().get(`${routePrefix}${path}`, routeHandler);
       }
     }
   };
