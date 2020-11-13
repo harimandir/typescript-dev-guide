@@ -1,5 +1,7 @@
 import "reflect-metadata";
 
+import { Methods } from "./Methods";
+
 function bindRouteMethod(method: string) {
   return function (path: string): Function {
     return function (target: any, key: string, desc: PropertyDescriptor): void {
@@ -9,8 +11,8 @@ function bindRouteMethod(method: string) {
   };
 }
 
-export const get = bindRouteMethod("get");
-export const post = bindRouteMethod("post");
-export const put = bindRouteMethod("put");
-export const patch = bindRouteMethod("patch");
-export const del = bindRouteMethod("delete");
+export const get = bindRouteMethod(Methods.get);
+export const post = bindRouteMethod(Methods.post);
+export const put = bindRouteMethod(Methods.put);
+export const patch = bindRouteMethod(Methods.patch);
+export const del = bindRouteMethod(Methods.delete);
