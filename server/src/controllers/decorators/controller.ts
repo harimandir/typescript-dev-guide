@@ -1,11 +1,18 @@
 import "reflect-metadata";
+import { Router } from "express";
+
+export const router = Router();
 
 export function controller(routePrefix: string): Function {
   return function (targetContructor: Function): void {
-    for (let key in targetContructor.prototype) {
-      const routeHandler = targetContructor.prototype[key];
+    const { prototype } = targetContructor;
+    for (let key in prototype) {
+      const routeHandler = prototype[key];
+      const path = Reflect.getMetadata("path", prototype, key);
 
-      const path = Reflect.getMetadata("path", targetContructor, key);
+      if (path !== undefined) {
+        router.get(`${routePrefix}${path}`, routeHandler);
+      }
     }
   };
 }
