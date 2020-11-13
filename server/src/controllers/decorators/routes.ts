@@ -1,10 +1,15 @@
 import "reflect-metadata";
 import { MetadataKeys } from "./MetadataKeys";
+import { RouteHandlerDescriptor } from "./RouteHandlerDescriptor";
 import { Methods } from "./Methods";
 
 function bindRouteMethod(method: string) {
   return function (path: string): Function {
-    return function (target: any, key: string, desc: PropertyDescriptor): void {
+    return function (
+      target: any,
+      key: string,
+      desc: RouteHandlerDescriptor
+    ): void {
       Reflect.defineMetadata(MetadataKeys.Method, method, target, key);
       Reflect.defineMetadata(MetadataKeys.Path, path, target, key);
     };

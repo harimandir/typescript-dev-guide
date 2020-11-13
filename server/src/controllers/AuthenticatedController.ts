@@ -4,6 +4,11 @@ import { get, controller, use } from "./decorators";
 
 @controller("/protected")
 class AuthenticatedController {
+  @get("/test")
+  something(a: number): number {
+    return a;
+  }
+
   @get("/")
   @use(requireAuth)
   getRoot(req: Request, res: Response): void {
