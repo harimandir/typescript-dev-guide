@@ -1,10 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-class App extends React.Component {
+interface AppProps {
+  prop: string;
+}
+
+class App extends React.Component<AppProps> {
   render() {
-    return <div>Hello, World!</div>;
+    return <div>prop == {this.props.prop}</div>;
   }
 }
 
-ReactDOM.render(<App />, document.getElementById("root"));
+ReactDOM.render(<App prop="some property" />, document.getElementById("root"));
