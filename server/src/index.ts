@@ -7,6 +7,7 @@ import { requireAuth } from "./routes/middleware/requireAuth";
 import { router as protectedRouter } from "./routes/protected";
 
 import { AppRouter } from "./AppRouter";
+import "./controllers/RootController";
 import "./controllers/AuthController";
 
 import bodyParser from "body-parser";
@@ -21,9 +22,6 @@ app.use(
   })
 );
 
-app.use("/", rootRouter);
-app.use("/login", loginRouter);
-app.use("/logout", logoutRouter);
 app.use("/protected", requireAuth, protectedRouter);
 
 app.use(AppRouter.getInstance());
