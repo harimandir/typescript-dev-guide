@@ -85,3 +85,13 @@ Homegrown web framework
 Express server with TypeScript
 
 `npm start`
+
+### rrts
+
+React/Redux with TypeScript
+
+- This project is configured using yarn rather than npm, so use yarn to install dependencies and start the development server
+
+`yarn install`
+
+`yarn start`
