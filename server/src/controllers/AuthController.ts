@@ -4,7 +4,7 @@ import { Methods } from "./decorators/Methods";
 import { requiredInputs } from "./decorators/requiredInputs";
 
 @controller("/auth")
-class LoginController {
+class AuthController {
   @get("/login")
   getLogin(req: Request, res: Response): void {
     res.send(`

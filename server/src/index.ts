@@ -7,7 +7,7 @@ import { requireAuth } from "./routes/middleware/requireAuth";
 import { router as protectedRouter } from "./routes/protected";
 
 import { AppRouter } from "./AppRouter";
-import "./controllers/LoginController";
+import "./controllers/AuthController";
 
 import bodyParser from "body-parser";
 import cookieSession from "cookie-session";
