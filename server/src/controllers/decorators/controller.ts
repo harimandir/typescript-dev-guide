@@ -18,9 +18,8 @@ export function controller(routePrefix: string): Function {
       const path = Reflect.getMetadata(MetadataKeys.Path, prototype, key);
 
       if (path !== undefined) {
-        const middlewares: RequestHandler[] = [
-          ...Reflect.getMetadata(MetadataKeys.Middlware, prototype, key),
-        ];
+        const middlewares: RequestHandler[] =
+          Reflect.getMetadata(MetadataKeys.Middlware, prototype, key) ?? [];
         AppRouter.getInstance()[method](
           `${routePrefix}${path}`,
           ...middlewares,
