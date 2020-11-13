@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { requireAuth } from "../routes/middleware/requireAuth";
+import { requireAuth } from "./middleware/requireAuth";
 import { get, controller, use } from "./decorators";
 
 @controller("/protected")

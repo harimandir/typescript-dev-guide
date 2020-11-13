@@ -1,8 +1,9 @@
 import "reflect-metadata";
-import { Request, Response, NextFunction, RequestHandler } from "express";
+import { RequestHandler } from "express";
 import { AppRouter } from "../../AppRouter";
 import { Methods } from "./Methods";
 import { MetadataKeys } from "./MetadataKeys";
+import { requiredInputs } from "../middleware/requiredInputs";
 
 export function controller(routePrefix: string): Function {
   return function (targetConstructor: Function): void {
@@ -20,7 +21,7 @@ export function controller(routePrefix: string): Function {
         const required: string[] =
           Reflect.getMetadata(MetadataKeys.RequiredInputs, prototype, key) ??
           [];
-        let validateInput = buildRequiredInputsValidator(required);
+        let validateInput = requiredInputs(required);
 
         const middlewares: RequestHandler[] =
           Reflect.getMetadata(MetadataKeys.Middleware, prototype, key) ?? [];
@@ -32,23 +33,5 @@ export function controller(routePrefix: string): Function {
         );
       }
     }
-  };
-}
-
-function buildRequiredInputsValidator(props: string[]): RequestHandler {
-  return function (req: Request, res: Response, next: NextFunction): void {
-    if (props) {
-      for (let prop of props) {
-        if (req?.body[prop] === undefined) {
-          res.status(422).send(`
-          <div>Invalid request</div>
-          <div>${prop} required</div>
-          `);
-          return;
-        }
-      }
-    }
-    next();
-    return;
   };
 }
