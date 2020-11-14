@@ -1,33 +1,17 @@
-import React from "react";
-import ReactDOM from "react-dom";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './index.css';
+import App from './App';
+import reportWebVitals from './reportWebVitals';
 
-interface AppProps {
-  prop: string;
-}
+ReactDOM.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
+  document.getElementById('root')
+);
 
-class App extends React.Component<AppProps> {
-  state = { value: 0 };
-
-  handleIncrement = (): void => {
-    this.setState({ value: this.state.value + 1 });
-  };
-
-  handleDecrement = (): void => {
-    this.setState({ value: this.state.value - 1 });
-  };
-
-  render() {
-    return (
-      <div>
-        props.prop == {this.props.prop}
-        <div>
-          <button onClick={this.handleIncrement}>Increment value</button>
-          <button onClick={this.handleDecrement}>Decrement value</button>
-        </div>
-        state.value == {this.state.value}
-      </div>
-    );
-  }
-}
-
-ReactDOM.render(<App prop="some property" />, document.getElementById("root"));
+// If you want to start measuring performance in your app, pass a function
+// to log results (for example: reportWebVitals(console.log))
+// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+reportWebVitals();
