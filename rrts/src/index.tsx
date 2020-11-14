@@ -5,8 +5,16 @@ interface AppProps {
   prop: string;
 }
 
-class App extends React.Component<AppProps> {
-  state = { value: 0 };
+interface AppState {
+  value: number;
+}
+
+class App extends React.Component<AppProps, AppState> {
+  constructor(props: AppProps) {
+    super(props);
+
+    this.state = { value: 0 };
+  }
 
   handleIncrement = (): void => {
     this.setState({ value: this.state.value + 1 });
