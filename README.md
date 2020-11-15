@@ -4,7 +4,7 @@ This a representation of work completed during Setphen Grider's course on TypeSc
 
 ## Prerequisites
 
-Install npm
+Install npm and yarn
 
 ## Setup
 
