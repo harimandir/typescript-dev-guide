@@ -2,12 +2,12 @@ import React from "react";
 import { connect } from "react-redux";
 import { StoreState } from "./reducers";
 import { Todo } from "./types/Todo";
-import { fetchTodos, deleteTodo, Action } from "./actions";
+import { fetchTodos, deleteTodo } from "./actions";
 
 interface AppProps {
   todos: Todo[];
-  fetchTodos: () => Promise<void>;
-  deleteTodo: (id: number) => Action;
+  fetchTodos: Function;
+  deleteTodo: typeof deleteTodo;
 }
 
 class _App extends React.Component<AppProps> {
@@ -27,7 +27,7 @@ class _App extends React.Component<AppProps> {
   render() {
     return (
       <div data-testid="App">
-        <button onClick={this.props.fetchTodos}>Fetch Todos</button>
+        <button onClick={() => this.props.fetchTodos()}>Fetch Todos</button>
         {this.renderTodos()}
       </div>
     );
