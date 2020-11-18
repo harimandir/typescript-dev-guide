@@ -6,10 +6,11 @@ import reportWebVitals from "./reportWebVitals";
 import { createStore, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
 import thunk from "redux-thunk";
-import { reducers } from "./reducers";
+import { reducers, StoreState } from "./reducers";
+import { Action } from "./actions";
 import { composeWithDevTools } from "redux-devtools-extension";
 
-const store = createStore(
+const store = createStore<StoreState, Action, unknown, unknown>(
   reducers,
   composeWithDevTools(applyMiddleware(thunk))
 );
