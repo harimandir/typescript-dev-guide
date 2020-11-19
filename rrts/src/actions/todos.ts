@@ -3,13 +3,11 @@ import { Action, Dispatch } from "redux";
 import { ActionTypes } from "./ActionTypes";
 import { Todo } from "../types/Todo";
 
-export interface FetchTodosAction extends Action {
-  type: ActionTypes.fetchTodos;
+export interface FetchTodosAction extends Action<ActionTypes.fetchTodos> {
   payload: Todo[];
 }
 
-export interface DeleteTodoAction extends Action {
-  type: ActionTypes.deleteTodo;
+export interface DeleteTodoAction extends Action<ActionTypes.deleteTodo> {
   payload: number;
 }
 
